@@ -22,6 +22,7 @@ class ChallengeController extends Controller
     {
         $companies = Company::get();
         $challenge = Challenge::get();
+        $challengeCompany = Challenge::find();
         $data = ['companies' =>$companies,
                  'challenge' => $challenge];
         return $data;
@@ -48,15 +49,15 @@ class ChallengeController extends Controller
         $request->validate([
                                'nombre' => 'required',
                                'descripcion'=> 'required',
-                               'empresa' => 'required'
+                               'empresas' => 'required'
                            ]);
         $user = auth()->id();
         $challenge = new Challenge();
         $challenge->nombre = $request->nombre;
         $challenge->descripcion = $request->descripcion;
         $challenge->user_id = $user;
-        $challenge->company_id = $request->empresa;
         $challenge->save();
+        $challenge->companies()->attach($request->empresas);
     }
 
     /**
@@ -65,9 +66,10 @@ class ChallengeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Challenge $challenge)
     {
-        //
+        $challenge = Challenge::find($challenge->id);
+        $challenge->compa
     }
 
     /**
@@ -93,10 +95,12 @@ class ChallengeController extends Controller
         $request->validate([
                                'nombre' => 'required',
                                'descripcion'=> 'required',
+                               'empresas' => 'required'
                            ]);
         $challenge->nombre = $request->nombre;
         $challenge->descripcion = $request->descripcion;
         $challenge->update();
+        $challenge->companies()->sync($request->empresas);
     }
 
     /**

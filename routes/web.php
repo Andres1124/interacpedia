@@ -29,7 +29,7 @@ Route::get('/company', [CompanyController::class, 'create'])->name('company.crea
 
 Route::post('/company', [CompanyController::class, 'store'])->name('company.store');
 
-Route::get('/company/edit/{company}', [CompanyController::class, 'edit'])->name('company.edit');
+Route::get('/company/{company}/edit', [CompanyController::class, 'edit'])->name('company.edit');
 
 Route::put('/company/{company}', [CompanyController::class, 'update'])->name('company.update');
 

@@ -2186,15 +2186,22 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
       challenge: {
         nombre: '',
         descripcion: '',
-        empresa: ''
+        empresas: []
       },
       id: 0,
+      checked: true,
       modificar: true,
       modal: 0,
       tituloModal: '',
@@ -2321,7 +2328,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         this.id = 0;
         this.challenge.nombre = '';
         this.challenge.descripcion = '';
-        this.challenge.empresa = '';
+        this.checked = false;
         this.errors = {};
       }
     },
@@ -39270,10 +39277,7 @@ var render = function() {
             _vm._v(" "),
             _c(
               "div",
-              {
-                class: _vm.modificar ? "ver" : "",
-                staticStyle: { padding: "5px 50px" }
-              },
+              { staticStyle: { padding: "5px 50px" } },
               [
                 _c(
                   "label",
@@ -39288,56 +39292,79 @@ var render = function() {
                   [_vm._v("Empresa:")]
                 ),
                 _vm._v(" "),
-                _c(
-                  "select",
-                  {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.challenge.empresa,
-                        expression: "challenge.empresa"
+                _vm._l(_vm.companies, function(company) {
+                  return _c("div", { attrs: { id: "example-3" } }, [
+                    _vm.modificar
+                      ? _c("div", [
+                          _c("span", [_vm._v(_vm._s(_vm.challenge.empresas))])
+                        ])
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.challenge.empresas,
+                          expression: "challenge.empresas"
+                        }
+                      ],
+                      attrs: { type: "checkbox" },
+                      domProps: {
+                        value: company.id,
+                        checked: Array.isArray(_vm.challenge.empresas)
+                          ? _vm._i(_vm.challenge.empresas, company.id) > -1
+                          : _vm.challenge.empresas
+                      },
+                      on: {
+                        change: function($event) {
+                          var $$a = _vm.challenge.empresas,
+                            $$el = $event.target,
+                            $$c = $$el.checked ? true : false
+                          if (Array.isArray($$a)) {
+                            var $$v = company.id,
+                              $$i = _vm._i($$a, $$v)
+                            if ($$el.checked) {
+                              $$i < 0 &&
+                                _vm.$set(
+                                  _vm.challenge,
+                                  "empresas",
+                                  $$a.concat([$$v])
+                                )
+                            } else {
+                              $$i > -1 &&
+                                _vm.$set(
+                                  _vm.challenge,
+                                  "empresas",
+                                  $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                                )
+                            }
+                          } else {
+                            _vm.$set(_vm.challenge, "empresas", $$c)
+                          }
+                        }
                       }
-                    ],
-                    staticClass: "focus:outline-none rounded border",
-                    staticStyle: { width: "100%", padding: "8px 8px" },
-                    attrs: { name: "empresa" },
-                    on: {
-                      change: function($event) {
-                        var $$selectedVal = Array.prototype.filter
-                          .call($event.target.options, function(o) {
-                            return o.selected
-                          })
-                          .map(function(o) {
-                            var val = "_value" in o ? o._value : o.value
-                            return val
-                          })
-                        _vm.$set(
-                          _vm.challenge,
-                          "empresa",
-                          $event.target.multiple
-                            ? $$selectedVal
-                            : $$selectedVal[0]
-                        )
-                      }
-                    }
-                  },
-                  _vm._l(_vm.companies, function(company) {
-                    return _c("option", { domProps: { value: company.id } }, [
+                    }),
+                    _vm._v(" "),
+                    _c("label", { attrs: { for: "" } }, [
                       _vm._v(_vm._s(company.nombre))
-                    ])
-                  }),
-                  0
-                ),
+                    ]),
+                    _vm._v(" "),
+                    _c("br")
+                  ])
+                }),
                 _vm._v(" "),
-                _vm.errors && _vm.errors.empresa
+                _c("span", [_vm._v(_vm._s())]),
+                _vm._v(" "),
+                _vm.errors && _vm.errors.empresas
                   ? _c("div", [
                       _c("small", { staticStyle: { color: "red" } }, [
-                        _vm._v(_vm._s(_vm.errors.empresa[0]))
+                        _vm._v(_vm._s(_vm.errors.empresas[0]))
                       ])
                     ])
                   : _vm._e()
-              ]
+              ],
+              2
             ),
             _vm._v(" "),
             _c(

@@ -18,9 +18,7 @@ class CreateChallengesTable extends Migration
             $table->string('nombre');
             $table->string('descripcion');
             $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('company_id');
             $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('company_id')->references('id')->on('companies');
 
             $table->timestamps();
         });

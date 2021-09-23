@@ -11,7 +11,7 @@ class Company extends Model
     protected $guarded = [];
 
     public function challenges(){
-        return $this->hasMany('App\Models\Challenge');
+        return $this->belongsToMany('App\Models\Challenge');
     }
 
 }

@@ -14,7 +14,7 @@ class Challenge extends Model
         return $this->belongsTo('App\Models\User');
     }
 
-    public function company(){
-        return $this->belongsTo('App\Models\Company');
+    public function companies(){
+        return $this->belongsToMany('App\Models\Company');
     }
 }
