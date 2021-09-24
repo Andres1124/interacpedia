@@ -41883,6 +41883,50 @@ video {
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+.title-home{
+  margin: auto;
+  font-size: 35px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-align: center;
+}
+
+.box-home{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  width: 50%;
+  margin: auto;
+}
+
+.subtitle{
+  text-align: center;
+  font-size: 25px;
+}
+
+.paragraph{
+  text-align: center;
+}
+
+.btn-home{
+  background: #DB2777;
+  padding: 5px 10px;
+  color: #fff;
+  font-weight: 600;
+  text-decoration: none;
+  text-align: center;
+}
+
+.btn-home:hover{
+  padding: 4px 9px;
+  background: #fff;
+  color: #DB2777;
+  border: 1px solid #DB2777;
+  text-decoration: none;
+}
+
 @media (min-width: 640px) {
   .sm\:container {
     width: 100%;
@@ -198017,3 +198061,4 @@ video {
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   }
 }
+

@@ -31,15 +31,11 @@ text-decoration: none; margin: auto; text-align: center; font-weight: 700; font-
                     </div>
                     <div style="padding: 5px 50px;">
                         <label for="" class="form-label">Empresa:</label>
-                        <div id='example-3' v-for="company in companies">
-                            <div v-if="modificar">
-                                <span>{{challenge.empresas}}</span>
-                            </div>
+                        <div id='example-3' v-for="company in companies">   
                             <input type="checkbox" v-bind:value="company.id" v-model="challenge.empresas">
                             <label for="">{{ company.nombre }}</label>
                             <br>
                         </div>
-                        <span>{{  }}</span>
                         <div v-if="errors && errors.empresas">
                             <small style="color: red;">{{ errors.empresas[0] }}</small>
                         </div>
@@ -76,27 +72,39 @@ text-decoration: none; margin: auto; text-align: center; font-weight: 700; font-
             </div>
         </div>
         <!--cards -->
-        <div class="grid mb-8 md:grid-cols-3 lg:grid-cols-3">
-            <div v-for="challenge in challenges">
-            <div class="border-2 mt-10" style="width: 350px; height: 350px; padding-bottom: 12px; border-radius: 10px; background-color: #fff;overflow: hidden">
-                <div class="" style="height: 60%; width: 100%">
-                    <img style="height: 100%; width: 100%" src="https://cdn.pixabay.com/photo/2021/08/30/21/29/port-6587129_960_720.jpg" alt="">
-                </div>
-                <div class="py-1 text-center border-2" style="width: 100%; height: 15%; border-right: none; border-left: none; border-top: none;display: flex; align-items: center;justify-content: center;font-weight: 700;">
-                    <h4 class="text-center text-black mb-1" style="font-size: 20px;color: #1E40AF">{{ challenge.nombre }}</h4>
-                </div>
-                <div style="width: 100%; height: 25%; display: flex; align-items: center; justify-content: space-around">
-                    <div>
-                        <button @click="viewChallenge(challenge)" type="button" class="bg-pink-600 rounded" style="padding: 8px 15px; color: #fff; font-weight: 600;text-decoration: none" data-toggle="modal" data-target="#exampleModal">
-                            Ver Desafío
-                        </button>
+        <div class=" items-center justify-center bg-white">
+            <div class="col-span-12">
+                <div class="overflow-auto lg:overflow-visible">
+                    <div class="flex lg:justify-between border-b-2 border-fuchsia-900 pb-1">
+                        <h2 class="text-2xl text-gray-500 font-bold">Desafíos</h2>
                     </div>
-                    <div>
-                        <button @click="modificar = true;openModal(challenge)" style="padding: 7px 14px; color: #DB2777; font-weight: 600; border: 1.5px solid #DB2777;text-decoration: none" class="rounded" >Editar</button>
-                    </div>
-                        <button @click="destroy(challenge.id)" type="submit" style="padding: 7px 14px; color: #DB2777; font-weight: 600; border: 1.5px solid #DB2777" class="rounded">Eliminar</button>
+                    <table class="table text-gray-400 border-separate space-y-6 text-sm">
+                        <thead class="bg-pink-600 text-white rounded">
+                        <tr>
+                            <th class="p-3">id</th>
+                            <th class="p-3 text-left">Nombre</th>
+                            <th class="p-3 text-left">Descripcion</th>
+                            <th class="p-3 text-left">Acciones</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        <tr class="bg-blue-100 lg:text-black rounded" v-for="challenge in challenges">
+                            <td class="p-3 font-medium capitalize">{{ challenge.id }}</td>
+                            <td class="p-3">{{ challenge.nombre }}</td>
+                            <td class="p-3">{{ challenge.descripcion }}</td>
+                            <td class="p-3">
+                                <button @click="modificar = true;openModal(challenge)" class="text-yellow-400 hover:text-gray-100 mx-2">
+                                    <i class="material-icons-outlined text-base">edit</i>
+                                </button>
+                                <button @click="destroy(challenge.id)" class="text-red-400 hover:text-gray-100 ml-2">
+                                    <i class="material-icons-round text-base">delete_outline</i>
+                                </button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
                 </div>
-            </div>
             </div>
         </div>
         
@@ -155,20 +163,34 @@ export default {
             }
             
         },
-        openModal(data={}){
+        
+        async challengeCompany(id = null){
+            const res = await axios.get('/challenge/'+id+'/edit').then(response => {
+                let companies = response.data[0].companies;
+                for(let i = 0; i <= companies.length; i++){
+                    this.challenge.empresas.push(companies[i].id);
+                }
+            }).catch(error => {
+                console.log(error);
+            })
+        },
+        
+         openModal(data={}){
           this.modal = 1;
           if (this.modificar){
               this.tituloModal = 'Editar Desafío';
               this.id = data.id;
-              this.challenge.nombre = data.nombre;
-              this.challenge.descripcion = data.descripcion;
-              this.errors ={}
+                  this.challenge.nombre = data.nombre;
+                  this.challenge.descripcion = data.descripcion;
+                  this.challenge.empresas = [];
+                  this.challengeCompany(this.id);
+                  this.errors ={}
           }else{
               this.tituloModal = 'Crear Desafío';
               this.id = 0;
               this.challenge.nombre = '';
               this.challenge.descripcion = '';
-              this.checked = false;
+              this.challenge.empresas = [];
               this.errors = {};
           }
         },
@@ -189,7 +211,8 @@ export default {
 <style>
 
 .form-modal{
-    width: 800px; margin: auto; 
+    width: 800px; 
+    margin: auto; 
     height: auto; 
     background-color: #fff;
     overflow: hidden; 
@@ -241,8 +264,19 @@ export default {
     background: rgba(0,0,0, 0.84);
     transition: top;
 }
-.ver{
-    opacity: 0;
+
+.table {
+    border-spacing: 0 15px;
 }
+
+i {
+    font-size: 1rem !important;
+}
+
+tr{
+    border-radius: 10px;
+}
+
+
 
 </style>

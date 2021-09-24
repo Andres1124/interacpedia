@@ -2065,9 +2065,9 @@ module.exports = {
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/challenge.vue?vue&type=script&lang=js&":
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Challenge.vue?vue&type=script&lang=js&":
 /*!****************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/challenge.vue?vue&type=script&lang=js& ***!
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Challenge.vue?vue&type=script&lang=js& ***!
   \****************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -2084,6 +2084,14 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -2313,6 +2321,39 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee3);
       }))();
     },
+    challengeCompany: function challengeCompany() {
+      var _arguments = arguments,
+          _this4 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee4() {
+        var id, res;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee4$(_context4) {
+          while (1) {
+            switch (_context4.prev = _context4.next) {
+              case 0:
+                id = _arguments.length > 0 && _arguments[0] !== undefined ? _arguments[0] : null;
+                _context4.next = 3;
+                return axios.get('/challenge/' + id + '/edit').then(function (response) {
+                  var companies = response.data[0].companies;
+
+                  for (var i = 0; i <= companies.length; i++) {
+                    _this4.challenge.empresas.push(companies[i].id);
+                  }
+                })["catch"](function (error) {
+                  console.log(error);
+                });
+
+              case 3:
+                res = _context4.sent;
+
+              case 4:
+              case "end":
+                return _context4.stop();
+            }
+          }
+        }, _callee4);
+      }))();
+    },
     openModal: function openModal() {
       var data = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
       this.modal = 1;
@@ -2322,13 +2363,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         this.id = data.id;
         this.challenge.nombre = data.nombre;
         this.challenge.descripcion = data.descripcion;
+        this.challenge.empresas = [];
+        this.challengeCompany(this.id);
         this.errors = {};
       } else {
         this.tituloModal = 'Crear Desafío';
         this.id = 0;
         this.challenge.nombre = '';
         this.challenge.descripcion = '';
-        this.checked = false;
+        this.challenge.empresas = [];
         this.errors = {};
       }
     },
@@ -2352,13 +2395,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 /*!*****************************!*\
   !*** ./resources/js/app.js ***!
   \*****************************/
-/***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-/**
- * First we will load all of this project's JavaScript dependencies which
- * includes Vue and other libraries. It is a great starting point when
- * building robust, powerful web applications using Vue and Laravel.
- */
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
+
+
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js")["default"];
@@ -2372,14 +2415,8 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js"
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-Vue.component('challenge', __webpack_require__(/*! ./components/challenge */ "./resources/js/components/challenge.vue")["default"]);
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
-
-var app = new Vue({
+vue__WEBPACK_IMPORTED_MODULE_0__["default"].component('challenge', __webpack_require__(/*! ./components/Challenge */ "./resources/js/components/Challenge.vue")["default"]);
+var app = new vue__WEBPACK_IMPORTED_MODULE_0__["default"]({
   el: '#app'
 });
 
@@ -6870,9 +6907,9 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 /***/ }),
 
-/***/ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/challenge.vue?vue&type=style&index=0&lang=css&":
+/***/ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Challenge.vue?vue&type=style&index=0&lang=css&":
 /*!**************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/challenge.vue?vue&type=style&index=0&lang=css& ***!
+  !*** ./node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Challenge.vue?vue&type=style&index=0&lang=css& ***!
   \**************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /***/ ((module, __webpack_exports__, __webpack_require__) => {
 
@@ -6887,7 +6924,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.mostrar{\r\n    display: list-item;\r\n    opacity: 1;\r\n    background: rgba(0,0,0, 0.84);\r\n    transition: top;\n}\n.ver{\r\n    opacity: 0;\n}\r\n\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.form-modal{\r\n    width: 800px; \r\n    margin: auto; \r\n    height: auto; \r\n    background-color: #fff;\r\n    overflow: hidden; \r\n    border-radius: 20px; \r\n    margin-top: 150px;\r\n    padding: 0 0 20px 0;\n}\n.form-modal-head{\r\n    height: 15%; \r\n    display: flex;\r\n    align-items: center;\r\n    justify-content: center;\n}\n.titulo-modal{\r\n    text-align: center; \r\n    font-size: 25px; \r\n    color: #fff; \r\n    font-weight: 700;\n}\n.form-label{\r\n    display: block;\r\n    color: #1E40AF;\r\n    font-weight: 600;\n}\n.form-input{\r\n    width: 100%; \r\n    padding: 8px 8px;\n}\n.form-buttons{\r\n    display: flex; \r\n    justify-content: space-between ;\r\n    padding: 5px 50px;\n}\n.form-button{\r\n    padding: 8px 15px; \r\n    color: #fff; \r\n    font-weight: 600;\r\n    text-decoration: none;\n}\n.mostrar{\r\n    display: list-item;\r\n    opacity: 1;\r\n    background: rgba(0,0,0, 0.84);\r\n    transition: top;\n}\n.table {\r\n    border-spacing: 0 15px;\n}\ni {\r\n    font-size: 1rem !important;\n}\ntr{\r\n    border-radius: 10px;\n}\r\n\r\n\r\n\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -38689,9 +38726,9 @@ try {
 
 /***/ }),
 
-/***/ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/challenge.vue?vue&type=style&index=0&lang=css&":
+/***/ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Challenge.vue?vue&type=style&index=0&lang=css&":
 /*!******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/challenge.vue?vue&type=style&index=0&lang=css& ***!
+  !*** ./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Challenge.vue?vue&type=style&index=0&lang=css& ***!
   \******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -38702,7 +38739,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
 /* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _node_modules_css_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_challenge_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./challenge.vue?vue&type=style&index=0&lang=css& */ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/challenge.vue?vue&type=style&index=0&lang=css&");
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Challenge_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Challenge.vue?vue&type=style&index=0&lang=css& */ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Challenge.vue?vue&type=style&index=0&lang=css&");
 
             
 
@@ -38711,11 +38748,11 @@ var options = {};
 options.insert = "head";
 options.singleton = false;
 
-var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_challenge_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_1__["default"], options);
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Challenge_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_1__["default"], options);
 
 
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_challenge_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_1__["default"].locals || {});
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Challenge_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_1__["default"].locals || {});
 
 /***/ }),
 
@@ -38998,9 +39035,9 @@ module.exports = function (list, options) {
 
 /***/ }),
 
-/***/ "./resources/js/components/challenge.vue":
+/***/ "./resources/js/components/Challenge.vue":
 /*!***********************************************!*\
-  !*** ./resources/js/components/challenge.vue ***!
+  !*** ./resources/js/components/Challenge.vue ***!
   \***********************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -39009,9 +39046,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _challenge_vue_vue_type_template_id_6499e5b0___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./challenge.vue?vue&type=template&id=6499e5b0& */ "./resources/js/components/challenge.vue?vue&type=template&id=6499e5b0&");
-/* harmony import */ var _challenge_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./challenge.vue?vue&type=script&lang=js& */ "./resources/js/components/challenge.vue?vue&type=script&lang=js&");
-/* harmony import */ var _challenge_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./challenge.vue?vue&type=style&index=0&lang=css& */ "./resources/js/components/challenge.vue?vue&type=style&index=0&lang=css&");
+/* harmony import */ var _Challenge_vue_vue_type_template_id_055b85f0___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Challenge.vue?vue&type=template&id=055b85f0& */ "./resources/js/components/Challenge.vue?vue&type=template&id=055b85f0&");
+/* harmony import */ var _Challenge_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Challenge.vue?vue&type=script&lang=js& */ "./resources/js/components/Challenge.vue?vue&type=script&lang=js&");
+/* harmony import */ var _Challenge_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Challenge.vue?vue&type=style&index=0&lang=css& */ "./resources/js/components/Challenge.vue?vue&type=style&index=0&lang=css&");
 /* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -39022,9 +39059,9 @@ __webpack_require__.r(__webpack_exports__);
 /* normalize component */
 
 var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
-  _challenge_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _challenge_vue_vue_type_template_id_6499e5b0___WEBPACK_IMPORTED_MODULE_0__.render,
-  _challenge_vue_vue_type_template_id_6499e5b0___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  _Challenge_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Challenge_vue_vue_type_template_id_055b85f0___WEBPACK_IMPORTED_MODULE_0__.render,
+  _Challenge_vue_vue_type_template_id_055b85f0___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
   false,
   null,
   null,
@@ -39034,14 +39071,14 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/js/components/challenge.vue"
+component.options.__file = "resources/js/components/Challenge.vue"
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
 
 /***/ }),
 
-/***/ "./resources/js/components/challenge.vue?vue&type=script&lang=js&":
+/***/ "./resources/js/components/Challenge.vue?vue&type=script&lang=js&":
 /*!************************************************************************!*\
-  !*** ./resources/js/components/challenge.vue?vue&type=script&lang=js& ***!
+  !*** ./resources/js/components/Challenge.vue?vue&type=script&lang=js& ***!
   \************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -39050,44 +39087,44 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_challenge_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./challenge.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/challenge.vue?vue&type=script&lang=js&");
- /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_challenge_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Challenge_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Challenge.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Challenge.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Challenge_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "./resources/js/components/challenge.vue?vue&type=style&index=0&lang=css&":
+/***/ "./resources/js/components/Challenge.vue?vue&type=style&index=0&lang=css&":
 /*!********************************************************************************!*\
-  !*** ./resources/js/components/challenge.vue?vue&type=style&index=0&lang=css& ***!
+  !*** ./resources/js/components/Challenge.vue?vue&type=style&index=0&lang=css& ***!
   \********************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_style_loader_dist_cjs_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_challenge_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/style-loader/dist/cjs.js!../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./challenge.vue?vue&type=style&index=0&lang=css& */ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/challenge.vue?vue&type=style&index=0&lang=css&");
+/* harmony import */ var _node_modules_style_loader_dist_cjs_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Challenge_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/style-loader/dist/cjs.js!../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Challenge.vue?vue&type=style&index=0&lang=css& */ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Challenge.vue?vue&type=style&index=0&lang=css&");
 
 
 /***/ }),
 
-/***/ "./resources/js/components/challenge.vue?vue&type=template&id=6499e5b0&":
+/***/ "./resources/js/components/Challenge.vue?vue&type=template&id=055b85f0&":
 /*!******************************************************************************!*\
-  !*** ./resources/js/components/challenge.vue?vue&type=template&id=6499e5b0& ***!
+  !*** ./resources/js/components/Challenge.vue?vue&type=template&id=055b85f0& ***!
   \******************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_challenge_vue_vue_type_template_id_6499e5b0___WEBPACK_IMPORTED_MODULE_0__.render),
-/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_challenge_vue_vue_type_template_id_6499e5b0___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Challenge_vue_vue_type_template_id_055b85f0___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Challenge_vue_vue_type_template_id_055b85f0___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_challenge_vue_vue_type_template_id_6499e5b0___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./challenge.vue?vue&type=template&id=6499e5b0& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/challenge.vue?vue&type=template&id=6499e5b0&");
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Challenge_vue_vue_type_template_id_055b85f0___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Challenge.vue?vue&type=template&id=055b85f0& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Challenge.vue?vue&type=template&id=055b85f0&");
 
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/challenge.vue?vue&type=template&id=6499e5b0&":
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Challenge.vue?vue&type=template&id=055b85f0&":
 /*!*********************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/challenge.vue?vue&type=template&id=6499e5b0& ***!
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Challenge.vue?vue&type=template&id=055b85f0& ***!
   \*********************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -39129,292 +39166,201 @@ var render = function() {
     ),
     _vm._v(" "),
     _c("div", { staticClass: "modal", class: { mostrar: _vm.modal } }, [
-      _c(
-        "div",
-        {
-          staticClass: "border",
-          staticStyle: {
-            width: "800px",
-            margin: "auto",
-            height: "auto",
-            "background-color": "#fff",
-            overflow: "hidden",
-            "border-radius": "20px",
-            "margin-top": "150px",
-            padding: "0 0 20px 0"
-          }
-        },
-        [
+      _c("div", { staticClass: "border form-modal" }, [
+        _c("div", { staticClass: "bg-indigo-800 form-modal-head" }, [
+          _c("span", { staticClass: "titulo-modal" }, [
+            _vm._v(_vm._s(_vm.tituloModal))
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticStyle: { height: "95%" } }, [
+          _c("div", { staticStyle: { padding: "5px 50px" } }, [
+            _c("label", { staticClass: "form-label", attrs: { for: "" } }, [
+              _vm._v("Nombre:")
+            ]),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.challenge.nombre,
+                  expression: "challenge.nombre"
+                }
+              ],
+              staticClass: "focus:outline-none rounded border form-input",
+              attrs: {
+                type: "text",
+                name: "nombre",
+                placeholder:
+                  "Ejemplo: ¿Cómo podrias contribuir a la 4ta revolución industrial?"
+              },
+              domProps: { value: _vm.challenge.nombre },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.challenge, "nombre", $event.target.value)
+                }
+              }
+            }),
+            _vm._v(" "),
+            _vm.errors && _vm.errors.nombre
+              ? _c("div", [
+                  _c("small", { staticStyle: { color: "red" } }, [
+                    _vm._v(_vm._s(_vm.errors.nombre[0]))
+                  ])
+                ])
+              : _vm._e()
+          ]),
+          _vm._v(" "),
+          _c("div", { staticStyle: { padding: "5px 50px" } }, [
+            _c("label", { staticClass: "form-label", attrs: { for: "" } }, [
+              _vm._v("Descripción:")
+            ]),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.challenge.descripcion,
+                  expression: "challenge.descripcion"
+                }
+              ],
+              staticClass: "focus:outline-none rounded border form-input",
+              attrs: {
+                type: "text",
+                name: "descripcion",
+                placeholder: "Ejemplo: Describe las estrategias que aplicarías"
+              },
+              domProps: { value: _vm.challenge.descripcion },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.challenge, "descripcion", $event.target.value)
+                }
+              }
+            }),
+            _vm._v(" "),
+            _vm.errors && _vm.errors.descripcion
+              ? _c("div", [
+                  _c("small", { staticStyle: { color: "red" } }, [
+                    _vm._v(_vm._s(_vm.errors.descripcion[0]))
+                  ])
+                ])
+              : _vm._e()
+          ]),
+          _vm._v(" "),
           _c(
             "div",
-            {
-              staticClass: "bg-indigo-800",
-              staticStyle: {
-                height: "15%",
-                display: "flex",
-                "align-items": "center",
-                "justify-content": "center"
-              }
-            },
+            { staticStyle: { padding: "5px 50px" } },
             [
-              _c(
-                "span",
-                {
-                  staticStyle: {
-                    "text-align": "center",
-                    "font-size": "25px",
-                    color: "#fff",
-                    "font-weight": "700"
-                  }
-                },
-                [_vm._v(_vm._s(_vm.tituloModal))]
-              )
-            ]
-          ),
-          _vm._v(" "),
-          _c("div", { staticStyle: { height: "95%" } }, [
-            _c("div", { staticStyle: { padding: "5px 50px" } }, [
-              _c(
-                "label",
-                {
-                  staticStyle: {
-                    display: "block",
-                    color: "#1E40AF",
-                    "font-weight": "600"
-                  },
-                  attrs: { for: "" }
-                },
-                [_vm._v("Nombre:")]
-              ),
+              _c("label", { staticClass: "form-label", attrs: { for: "" } }, [
+                _vm._v("Empresa:")
+              ]),
               _vm._v(" "),
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.challenge.nombre,
-                    expression: "challenge.nombre"
-                  }
-                ],
-                staticClass: "focus:outline-none rounded border",
-                staticStyle: { width: "100%", padding: "8px 8px" },
-                attrs: {
-                  type: "text",
-                  name: "nombre",
-                  placeholder:
-                    "Ejemplo: ¿Cómo podrias contribuir a la 4ta revolución industrial?"
-                },
-                domProps: { value: _vm.challenge.nombre },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.$set(_vm.challenge, "nombre", $event.target.value)
-                  }
-                }
-              }),
-              _vm._v(" "),
-              _vm.errors && _vm.errors.nombre
-                ? _c("div", [
-                    _c("small", { staticStyle: { color: "red" } }, [
-                      _vm._v(_vm._s(_vm.errors.nombre[0]))
-                    ])
-                  ])
-                : _vm._e()
-            ]),
-            _vm._v(" "),
-            _c("div", { staticStyle: { padding: "5px 50px" } }, [
-              _c(
-                "label",
-                {
-                  staticStyle: {
-                    display: "block",
-                    color: "#1E40AF",
-                    "font-weight": "600"
-                  },
-                  attrs: { for: "" }
-                },
-                [_vm._v("Descripción:")]
-              ),
-              _vm._v(" "),
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.challenge.descripcion,
-                    expression: "challenge.descripcion"
-                  }
-                ],
-                staticClass: "focus:outline-none rounded border",
-                staticStyle: { width: "100%", padding: "8px 8px" },
-                attrs: {
-                  type: "text",
-                  name: "descripcion",
-                  placeholder:
-                    "Ejemplo: Describe las estrategias que aplicarías"
-                },
-                domProps: { value: _vm.challenge.descripcion },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.$set(_vm.challenge, "descripcion", $event.target.value)
-                  }
-                }
-              }),
-              _vm._v(" "),
-              _vm.errors && _vm.errors.descripcion
-                ? _c("div", [
-                    _c("small", { staticStyle: { color: "red" } }, [
-                      _vm._v(_vm._s(_vm.errors.descripcion[0]))
-                    ])
-                  ])
-                : _vm._e()
-            ]),
-            _vm._v(" "),
-            _c(
-              "div",
-              { staticStyle: { padding: "5px 50px" } },
-              [
-                _c(
-                  "label",
-                  {
-                    staticStyle: {
-                      display: "block",
-                      color: "#1E40AF",
-                      "font-weight": "600"
+              _vm._l(_vm.companies, function(company) {
+                return _c("div", { attrs: { id: "example-3" } }, [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.challenge.empresas,
+                        expression: "challenge.empresas"
+                      }
+                    ],
+                    attrs: { type: "checkbox" },
+                    domProps: {
+                      value: company.id,
+                      checked: Array.isArray(_vm.challenge.empresas)
+                        ? _vm._i(_vm.challenge.empresas, company.id) > -1
+                        : _vm.challenge.empresas
                     },
-                    attrs: { for: "" }
-                  },
-                  [_vm._v("Empresa:")]
-                ),
-                _vm._v(" "),
-                _vm._l(_vm.companies, function(company) {
-                  return _c("div", { attrs: { id: "example-3" } }, [
-                    _vm.modificar
-                      ? _c("div", [
-                          _c("span", [_vm._v(_vm._s(_vm.challenge.empresas))])
-                        ])
-                      : _vm._e(),
-                    _vm._v(" "),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.challenge.empresas,
-                          expression: "challenge.empresas"
-                        }
-                      ],
-                      attrs: { type: "checkbox" },
-                      domProps: {
-                        value: company.id,
-                        checked: Array.isArray(_vm.challenge.empresas)
-                          ? _vm._i(_vm.challenge.empresas, company.id) > -1
-                          : _vm.challenge.empresas
-                      },
-                      on: {
-                        change: function($event) {
-                          var $$a = _vm.challenge.empresas,
-                            $$el = $event.target,
-                            $$c = $$el.checked ? true : false
-                          if (Array.isArray($$a)) {
-                            var $$v = company.id,
-                              $$i = _vm._i($$a, $$v)
-                            if ($$el.checked) {
-                              $$i < 0 &&
-                                _vm.$set(
-                                  _vm.challenge,
-                                  "empresas",
-                                  $$a.concat([$$v])
-                                )
-                            } else {
-                              $$i > -1 &&
-                                _vm.$set(
-                                  _vm.challenge,
-                                  "empresas",
-                                  $$a.slice(0, $$i).concat($$a.slice($$i + 1))
-                                )
-                            }
+                    on: {
+                      change: function($event) {
+                        var $$a = _vm.challenge.empresas,
+                          $$el = $event.target,
+                          $$c = $$el.checked ? true : false
+                        if (Array.isArray($$a)) {
+                          var $$v = company.id,
+                            $$i = _vm._i($$a, $$v)
+                          if ($$el.checked) {
+                            $$i < 0 &&
+                              _vm.$set(
+                                _vm.challenge,
+                                "empresas",
+                                $$a.concat([$$v])
+                              )
                           } else {
-                            _vm.$set(_vm.challenge, "empresas", $$c)
+                            $$i > -1 &&
+                              _vm.$set(
+                                _vm.challenge,
+                                "empresas",
+                                $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                              )
                           }
+                        } else {
+                          _vm.$set(_vm.challenge, "empresas", $$c)
                         }
                       }
-                    }),
-                    _vm._v(" "),
-                    _c("label", { attrs: { for: "" } }, [
-                      _vm._v(_vm._s(company.nombre))
-                    ]),
-                    _vm._v(" "),
-                    _c("br")
-                  ])
-                }),
-                _vm._v(" "),
-                _c("span", [_vm._v(_vm._s())]),
-                _vm._v(" "),
-                _vm.errors && _vm.errors.empresas
-                  ? _c("div", [
-                      _c("small", { staticStyle: { color: "red" } }, [
-                        _vm._v(_vm._s(_vm.errors.empresas[0]))
-                      ])
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("label", { attrs: { for: "" } }, [
+                    _vm._v(_vm._s(company.nombre))
+                  ]),
+                  _vm._v(" "),
+                  _c("br")
+                ])
+              }),
+              _vm._v(" "),
+              _vm.errors && _vm.errors.empresas
+                ? _c("div", [
+                    _c("small", { staticStyle: { color: "red" } }, [
+                      _vm._v(_vm._s(_vm.errors.empresas[0]))
                     ])
-                  : _vm._e()
-              ],
-              2
+                  ])
+                : _vm._e()
+            ],
+            2
+          ),
+          _vm._v(" "),
+          _c("div", { staticClass: "form-buttons" }, [
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-light rounded border",
+                attrs: { type: "button", "data-dismiss": "modal" },
+                on: {
+                  click: function($event) {
+                    return _vm.closeModal()
+                  }
+                }
+              },
+              [_vm._v("Cerrar")]
             ),
             _vm._v(" "),
             _c(
-              "div",
+              "button",
               {
-                staticStyle: {
-                  display: "flex",
-                  "justify-content": "space-between",
-                  padding: "5px 50px"
+                staticClass: "bg-pink-600 rounded form-button",
+                attrs: { type: "button", "data-dismiss": "modal" },
+                on: {
+                  click: function($event) {
+                    return _vm.save()
+                  }
                 }
               },
-              [
-                _c(
-                  "button",
-                  {
-                    staticClass: "btn btn-light rounded border",
-                    attrs: { type: "button", "data-dismiss": "modal" },
-                    on: {
-                      click: function($event) {
-                        return _vm.closeModal()
-                      }
-                    }
-                  },
-                  [_vm._v("Cerrar")]
-                ),
-                _vm._v(" "),
-                _c(
-                  "button",
-                  {
-                    staticClass: "bg-pink-600 rounded",
-                    staticStyle: {
-                      padding: "8px 15px",
-                      color: "#fff",
-                      "font-weight": "600",
-                      "text-decoration": "none"
-                    },
-                    attrs: { type: "button", "data-dismiss": "modal" },
-                    on: {
-                      click: function($event) {
-                        return _vm.save()
-                      }
-                    }
-                  },
-                  [_vm._v("Guardar")]
-                )
-              ]
+              [_vm._v("Guardar")]
             )
           ])
-        ]
-      )
+        ])
+      ])
     ]),
     _vm._v(" "),
     _c(
@@ -39439,12 +39385,7 @@ var render = function() {
                 _c(
                   "h5",
                   {
-                    staticClass: "text-center mb-1",
-                    staticStyle: {
-                      "font-size": "20px",
-                      color: "#1E40AF",
-                      "font-weight": "700"
-                    },
+                    staticClass: "titulo-modal",
                     attrs: { id: "exampleModalLabel" }
                   },
                   [_vm._v(_vm._s(_vm.tituloModal))]
@@ -39464,147 +39405,93 @@ var render = function() {
       ]
     ),
     _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "grid mb-8 md:grid-cols-3 lg:grid-cols-3" },
-      _vm._l(_vm.challenges, function(challenge) {
-        return _c("div", [
+    _c("div", { staticClass: " items-center justify-center bg-white" }, [
+      _c("div", { staticClass: "col-span-12" }, [
+        _c("div", { staticClass: "overflow-auto lg:overflow-visible" }, [
+          _vm._m(2),
+          _vm._v(" "),
           _c(
-            "div",
+            "table",
             {
-              staticClass: "border-2 mt-10",
-              staticStyle: {
-                width: "350px",
-                height: "350px",
-                "padding-bottom": "12px",
-                "border-radius": "10px",
-                "background-color": "#fff",
-                overflow: "hidden"
-              }
+              staticClass:
+                "table text-gray-400 border-separate space-y-6 text-sm"
             },
             [
-              _vm._m(2, true),
+              _vm._m(3),
               _vm._v(" "),
               _c(
-                "div",
-                {
-                  staticClass: "py-1 text-center border-2",
-                  staticStyle: {
-                    width: "100%",
-                    height: "15%",
-                    "border-right": "none",
-                    "border-left": "none",
-                    "border-top": "none",
-                    display: "flex",
-                    "align-items": "center",
-                    "justify-content": "center",
-                    "font-weight": "700"
-                  }
-                },
-                [
-                  _c(
-                    "h4",
-                    {
-                      staticClass: "text-center text-black mb-1",
-                      staticStyle: { "font-size": "20px", color: "#1E40AF" }
-                    },
-                    [_vm._v(_vm._s(challenge.nombre))]
-                  )
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "div",
-                {
-                  staticStyle: {
-                    width: "100%",
-                    height: "25%",
-                    display: "flex",
-                    "align-items": "center",
-                    "justify-content": "space-around"
-                  }
-                },
-                [
-                  _c("div", [
-                    _c(
-                      "button",
-                      {
-                        staticClass: "bg-pink-600 rounded",
-                        staticStyle: {
-                          padding: "8px 15px",
-                          color: "#fff",
-                          "font-weight": "600",
-                          "text-decoration": "none"
-                        },
-                        attrs: {
-                          type: "button",
-                          "data-toggle": "modal",
-                          "data-target": "#exampleModal"
-                        },
-                        on: {
-                          click: function($event) {
-                            return _vm.viewChallenge(challenge)
-                          }
-                        }
-                      },
-                      [
-                        _vm._v(
-                          "\n                            Ver Desafío\n                        "
+                "tbody",
+                _vm._l(_vm.challenges, function(challenge) {
+                  return _c(
+                    "tr",
+                    { staticClass: "bg-blue-100 lg:text-black rounded" },
+                    [
+                      _c("td", { staticClass: "p-3 font-medium capitalize" }, [
+                        _vm._v(_vm._s(challenge.id))
+                      ]),
+                      _vm._v(" "),
+                      _c("td", { staticClass: "p-3" }, [
+                        _vm._v(_vm._s(challenge.nombre))
+                      ]),
+                      _vm._v(" "),
+                      _c("td", { staticClass: "p-3" }, [
+                        _vm._v(_vm._s(challenge.descripcion))
+                      ]),
+                      _vm._v(" "),
+                      _c("td", { staticClass: "p-3" }, [
+                        _c(
+                          "button",
+                          {
+                            staticClass:
+                              "text-yellow-400 hover:text-gray-100 mx-2",
+                            on: {
+                              click: function($event) {
+                                _vm.modificar = true
+                                _vm.openModal(challenge)
+                              }
+                            }
+                          },
+                          [
+                            _c(
+                              "i",
+                              {
+                                staticClass: "material-icons-outlined text-base"
+                              },
+                              [_vm._v("edit")]
+                            )
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "button",
+                          {
+                            staticClass:
+                              "text-red-400 hover:text-gray-100 ml-2",
+                            on: {
+                              click: function($event) {
+                                return _vm.destroy(challenge.id)
+                              }
+                            }
+                          },
+                          [
+                            _c(
+                              "i",
+                              { staticClass: "material-icons-round text-base" },
+                              [_vm._v("delete_outline")]
+                            )
+                          ]
                         )
-                      ]
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("div", [
-                    _c(
-                      "button",
-                      {
-                        staticClass: "rounded",
-                        staticStyle: {
-                          padding: "7px 14px",
-                          color: "#DB2777",
-                          "font-weight": "600",
-                          border: "1.5px solid #DB2777",
-                          "text-decoration": "none"
-                        },
-                        on: {
-                          click: function($event) {
-                            _vm.modificar = true
-                            _vm.openModal(challenge)
-                          }
-                        }
-                      },
-                      [_vm._v("Editar")]
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c(
-                    "button",
-                    {
-                      staticClass: "rounded",
-                      staticStyle: {
-                        padding: "7px 14px",
-                        color: "#DB2777",
-                        "font-weight": "600",
-                        border: "1.5px solid #DB2777"
-                      },
-                      attrs: { type: "submit" },
-                      on: {
-                        click: function($event) {
-                          return _vm.destroy(challenge.id)
-                        }
-                      }
-                    },
-                    [_vm._v("Eliminar")]
+                      ])
+                    ]
                   )
-                ]
+                }),
+                0
               )
             ]
           )
         ])
-      }),
-      0
-    )
+      ])
+    ])
   ])
 }
 var staticRenderFns = [
@@ -39650,15 +39537,33 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticStyle: { height: "60%", width: "100%" } }, [
-      _c("img", {
-        staticStyle: { height: "100%", width: "100%" },
-        attrs: {
-          src:
-            "https://cdn.pixabay.com/photo/2021/08/30/21/29/port-6587129_960_720.jpg",
-          alt: ""
-        }
-      })
+    return _c(
+      "div",
+      {
+        staticClass:
+          "flex lg:justify-between border-b-2 border-fuchsia-900 pb-1"
+      },
+      [
+        _c("h2", { staticClass: "text-2xl text-gray-500 font-bold" }, [
+          _vm._v("Desafíos")
+        ])
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", { staticClass: "bg-pink-600 text-white rounded" }, [
+      _c("tr", [
+        _c("th", { staticClass: "p-3" }, [_vm._v("id")]),
+        _vm._v(" "),
+        _c("th", { staticClass: "p-3 text-left" }, [_vm._v("Nombre")]),
+        _vm._v(" "),
+        _c("th", { staticClass: "p-3 text-left" }, [_vm._v("Descripcion")]),
+        _vm._v(" "),
+        _c("th", { staticClass: "p-3 text-left" }, [_vm._v("Acciones")])
+      ])
     ])
   }
 ]

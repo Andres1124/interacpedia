@@ -38,10 +38,13 @@ Route::delete('/company/{company}', [CompanyController::class, 'destroy'])->name
 Route::get('/company/profile/{company}', [CompanyController::class, 'show'])->name('company.show');
 
 // Challenges
+Route::get('/challenge', [App\Http\Controllers\HomeController::class, 'challenges'])->name('challenges');
 
-Route::get('/challenges', [ChallengeController::class, 'index'])->name('challenge.index');
+Route::get('/challenges', [ChallengeController::class, 'index']);
 
-Route::post('/challenge', [ChallengeController::class, 'store'])->name('challenge.store');
+Route::post('/challenge', [ChallengeController::class, 'store']);
+
+Route::get('/challenge/{challenge}/edit', [ChallengeController::class, 'edit']);
 
 Route::put('/challenge/{challenge}', [ChallengeController::class, 'update']);
 

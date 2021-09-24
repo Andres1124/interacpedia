@@ -22,9 +22,9 @@ class ChallengeController extends Controller
     {
         $companies = Company::get();
         $challenge = Challenge::get();
-        $challengeCompany = Challenge::find();
         $data = ['companies' =>$companies,
-                 'challenge' => $challenge];
+                 'challenge' => $challenge,
+            ];
         return $data;
     }
 
@@ -66,10 +66,9 @@ class ChallengeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Challenge $challenge)
+    public function show($id)
     {
-        $challenge = Challenge::find($challenge->id);
-        $challenge->compa
+        
     }
 
     /**
@@ -80,7 +79,8 @@ class ChallengeController extends Controller
      */
     public function edit($id)
     {
-        //
+        $challengeCompany = Challenge::with('companies')->where('id', $id)->get();
+        return $challengeCompany;
     }
 
     /**
@@ -95,7 +95,6 @@ class ChallengeController extends Controller
         $request->validate([
                                'nombre' => 'required',
                                'descripcion'=> 'required',
-                               'empresas' => 'required'
                            ]);
         $challenge->nombre = $request->nombre;
         $challenge->descripcion = $request->descripcion;
